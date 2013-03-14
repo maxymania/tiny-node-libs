@@ -7,19 +7,35 @@ These are some tiny useful node.js libraries.
 A scgi library, that is asynchronous.
 
 On detail: scgi.js contains a stateful netstring parser, a scgi request parser, a Request
-and a Cesponse class, as well as 
+and a Response class, as well as a socket-handler for 'net' sockets so you don't need to
+care about low level stuff.
 
 ```js
 var net = require('net');
 var scgi = require('./scgi.js');
 
 var serve2 = scgi.createSocketHandler(function(req,resp){
-	resp.writeHead2("200 OK",{"Content-Type":"text/plain"});
+	// writeHead2 is the scgi native version.
+	// resp.writeHead2("200 OK",{"Content-Type":"text/plain"});
+	
+	// writeHead was implemented to be more http-module complaint.
+	resp.writeHead(200,"OK",{"Content-Type":"text/plain"});
 	resp.end("It works!","ascii");
 });
 
 net.createServer(serve2).listen(11001);
 ```
+
+### response.writeHead2(status, headers)
+This method returns the status code.
+```js
+resp.writeHead2('200 OK',{"Content-Type":"text/plain"});
+```
+
+### response.writeHead([statusCode], [reasonPhrase], [headers])
+I addes this method get the scgi package compativle with code, written for node's http-module.
+Internally it calls the .writeHead2 - method. Unlike the http-module, scgi requires the headers
+to be well-cased ( not "content-type" instead of "Content-Type").
 
 ## License for all libraries
 
