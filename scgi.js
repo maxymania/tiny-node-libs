@@ -1,4 +1,10 @@
+// Copyright maxymania
 
+
+/*
+ * This Constant (HTTP_STATUS_CODES) comes directly from lib/http.js of node.js' standard library
+ * Copyright Joyent, Inc. and other Node contributors.
+ */
 var HTTP_STATUS_CODES = {
   100 : 'Continue',
   101 : 'Switching Protocols',
@@ -57,6 +63,7 @@ var HTTP_STATUS_CODES = {
   510 : 'Not Extended',               // RFC 2774
   511 : 'Network Authentication Required' // RFC 6585
 };
+
 
 function Counter(len){
 	this._data=[];
