@@ -21,7 +21,7 @@ var serve2 = scgi.createSocketHandler(function(req,resp){
 net.createServer(serve2).listen(11001);
 ```
 
-- [*] GET requests tested
+- [x] GET requests tested
 - [ ] POST requests tested
 - [ ] Extended error testing for netstring parser
 - [ ] become more node.js-http-module complaint for compatiblity with other http code
