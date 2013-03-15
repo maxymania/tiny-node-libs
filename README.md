@@ -37,6 +37,42 @@ I addes this method get the scgi package compativle with code, written for node'
 Internally it calls the .writeHead2 - method. Unlike the http-module, scgi requires the headers
 to be well-cased ( not "content-type" instead of "Content-Type").
 
+##query_context
+
+If node.js developers have to wait for many callbacks to be called or events to happen, in order to merge
+the results, the testing for the each event to happen is a challange.
+**query_context** is a solution to wait for many events to happen.
+
+```js
+var Context = require('./query_context.js');
+var ctx = new Context(function(){
+  console.log("evend: Anything done!");
+});
+var event1 = ctx.call(function(par){
+  console.log("event1: "+par);
+});
+var event2 = ctx.call(function(par){
+  console.log("event2: "+par);
+});
+var event3 = ctx.call(function(par){
+  console.log("event3: "+par);
+});
+event1("Result1");
+event2("Result2");
+event3("Result3");
+console.log("End!");
+```
+will output:
+```
+event1: Result1
+event2: Result2
+event3: Result3
+evend: Anything done!
+End!
+```
+
+The event class also has a .kill() method in order to set timeouts.
+
 ## License for all libraries
 
 Copyright (c) 2013 maxymania
