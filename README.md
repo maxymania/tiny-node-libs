@@ -71,7 +71,8 @@ evend: Anything done!
 End!
 ```
 
-The event class also has a .kill() method in order to set timeouts.
+The event class also has a .kill() method in order to set timeouts or to handle exceptions
+(breaking up a process cleanly). It will call the end callback imediatly.
 
 ## License for all libraries
 
